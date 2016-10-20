@@ -28,3 +28,23 @@
   padding: 20px;
   width: 180px;
 }
+
+#exec-3 {
+  width: 290px;
+}
+
+.ex-3 {
+  background-color: green;
+  margin: 10px;
+  padding: 20px;
+}
+
+.ex-3 div {
+  background-color: aqua;
+  border: 4px solid black;
+  color: red;
+  font-size: 30px;
+  height: 30px;
+  padding: 20px;
+  width: 180px;
+}
