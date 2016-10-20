@@ -48,3 +48,22 @@
   padding: 20px;
   width: 180px;
 }
+
+#exec-4 h1, #exec-4 h2 {
+  color: green;
+}
+
+#red {
+  color: red;
+}
+
+#blueit {
+  color: blue;
+  font-style: italic;
+}
+
+#codetype {
+  font-family: monospace;
+}
+blue
+sandybrown
