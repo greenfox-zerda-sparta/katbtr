@@ -16,7 +16,9 @@ int main() {
 	// if the string is longer than 4 characters***
 	// print 'Long!' otherwise print 'Short!'
 
-	if (sizeof(x) > 4) {
+	int y = x.length();
+
+	if ( y > 4) {
 
 		cout << "Long!";
 

@@ -17,7 +17,9 @@ int main() {
 	// characters with a True for even and
 	// false False output otherwise
 
-	if (sizeof(x) %2 == 0) {
+	int y = x.length();
+
+	if (y %2 == 0) {
 
 		cout << "True";
 	} else {
