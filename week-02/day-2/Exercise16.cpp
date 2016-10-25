@@ -27,6 +27,30 @@ void MatrixColumn(int matri[3][3]) {
   }
 }
 
+void InOneLine(int matri[3][3]) {
+
+  for (int i = 0; i < 3; i++) {
+
+    for (int j = 0; j < 3; j++) {
+
+      cout << matri[i][j] << " | ";
+    }
+  }
+}
+
+void InOneColumn(int matri[3][3]) {
+
+  for (int i = 0; i < 3; i++) {
+
+    cout << endl;
+
+    for (int j = 0; j < 3; j++) {
+
+      cout << matri[i][j] << endl;
+    }
+  }
+}
+
 int main(){
   int m[3][3]= {{1,2,3},{4,5,6},{7,8,9}};
   //This is an array of arrays. Print it out as a 3x3 matrix. Using each inner array as
@@ -39,6 +63,9 @@ int main(){
   cout << endl;
   MatrixColumn(m);
   cout << endl;
+  InOneLine(m);
+  cout << endl;
+  InOneColumn(m);
 
   return 0;
 }
