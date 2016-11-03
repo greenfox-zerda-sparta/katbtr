@@ -34,14 +34,18 @@ float ave_of_gold(Pirate* array, int length) {
 
 string richest_wooden_leg(Pirate* array, int length) {
   int gold = 0;
-  string name;
+  string name = "";
+// Pirate richest = {"", false, 0}
   for (int i = 0; i < length; i++) {
-    if (array[i].has_wooden_leg == true && array[i].gold_count > gold) {
+    if (array[i].has_wooden_leg && array[i].gold_count > gold) {
+// ... && array[i].gold_count > richest.gold_count)
         gold = array[i].gold_count;
         name = array[i].name;
+//      richest = array[i]
     }
   }
   return name;
+//return richest;
 }
 
 int main() {

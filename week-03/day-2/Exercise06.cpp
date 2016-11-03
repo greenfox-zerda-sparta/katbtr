@@ -39,7 +39,7 @@ Student* construct(string name, int age) {
 // An int (1-5)
 // It should set the last grade's values with the given arguments
 
-void set_last_grade(Student &student, Subject subject, int last_grade) {
+void set_last_grade(Student& student, Subject subject, int last_grade) {
   student.grades[student.grade_count].subject = subject;
   student.grades[student.grade_count].value = last_grade;
   student.grade_count++;
@@ -48,10 +48,10 @@ void set_last_grade(Student &student, Subject subject, int last_grade) {
 // Create a function that takes a Student as a reference and returns the subject
 // that the student has worst grade in
 
-string subject_worst_grade(Student &student) {
+string subject_worst_grade(Student& student) {
   int worst_grade = student.grades[0].value;
   int worst_subject = student.grades[0].subject;
-  for (int i = 0; i < 5; i++) {
+  for (int i = 1; i < student.grade_count; i++) {
     if (student.grades[i].value < worst_grade) {
       worst_subject = student.grades[i].subject;
     }
@@ -59,11 +59,11 @@ string subject_worst_grade(Student &student) {
   return SubjectTypes[worst_subject];
 }
 
-// Create a function that deconstructs a Student
+// Create a function that destructs a Student
 // It should take a pointer that points to the student
 // It should deallocate each Grade and the Student itself
 
-void deconstruct(Student* student) {
+void destruct(Student* student) {
   delete[] student->grades;
   delete student;
 }
@@ -78,7 +78,7 @@ int main() {
 
   cout << "Worst subject for MuciBoci is " << subject_worst_grade(*MuciBoci) << endl;
 
-  deconstruct(MuciBoci);
+  destruct(MuciBoci);
 
   return 0;
 }

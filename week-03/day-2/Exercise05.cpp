@@ -26,7 +26,7 @@ bool worth_to_buy (House &house) {
   if (house.price < house.area * 400) {
     worth = true;
   }
-  return worth;
+  return worth; //Egy sorban: return house.price <house.area * 400;
 }
 
 // Create a function that takes an array of houses (and it's length), and counts the
@@ -35,7 +35,7 @@ bool worth_to_buy (House &house) {
 int count_worth_to_buy (House* array, int length) {
   int counter = 0;
   for (int i = 0; i < length; i++) {
-    if (worth_to_buy(array[i]) == true) {
+    if (worth_to_buy(array[i])) {
       counter++;
     }
   }
@@ -49,8 +49,8 @@ int count_worth_to_buy (House* array, int length) {
 void show_new_houses(House* array, int length) {
   House* new_houses = new House[length];
   for (int i = 0; i < length; i++) {
-    new_houses[i].address = array[i].address;
-    new_houses[i].price = array[i].area * 400;
+    new_houses[i].address = array[i].address; //Ezek helyett: new_houses[i] = array[i];
+    new_houses[i].price = array[i].area * 400; //Ez a sor kell csak az efelettin kívül.
     new_houses[i].rooms = array[i].rooms;
     new_houses[i].area = array[i].area;
     cout << new_houses[i].address << " " << new_houses[i].price << " " << new_houses[i].rooms << " "<< new_houses[i].area << endl;
@@ -61,7 +61,7 @@ void show_new_houses(House* array, int length) {
 int main() {
 
     House houses[] = {
-      {"ABCD", 150000, 5, 80},
+    {"ABCD", 150000, 5, 80},
     {"EFGH", 200000, 2, 60},
     {"IJKL", 30000, 4, 90},
     {"MNOP", 220000, 3, 110},
