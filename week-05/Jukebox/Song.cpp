@@ -33,3 +33,19 @@ string Song::get_artist() {
 float Song::set_rate_ave() {
     return (float)sum_of_ratings / count_of_ratings;
 }
+
+string Song::get_genre() {
+    return genre;
+}
+
+float Song::get_rate_ave() {
+    return set_rate_ave();
+}
+
+float Song::get_count_of_ratings() {
+    return count_of_ratings;
+}
+
+float Song::get_sum_of_ratings() {
+    return sum_of_ratings;
+}

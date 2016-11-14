@@ -18,6 +18,10 @@ public:
     float set_rate_ave();
     std::string get_title();
     std::string get_artist();
+    std::string get_genre();
+    float get_rate_ave();
+    float get_count_of_ratings();
+    float get_sum_of_ratings();
 };
 
 #endif /* SONG_H */
