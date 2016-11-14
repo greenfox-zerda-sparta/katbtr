@@ -58,7 +58,9 @@ int main() {
 
     cout << "The top rated title is " << jukebox.top_rated_title() << endl;
 
-//    cout << "The top rated genre is " << jukebox.top_rated_genre() << endl;
+    cout << "Rating of rock is " << jukebox.get_genre_rating("Rock") << endl;
+
+    cout << "The top rated genre is " << jukebox.top_rated_genre() << endl;
 
     return 0;
 }
