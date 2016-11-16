@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
-#include <fstream>
 #include "print-usage.h"
 #include "make-todo-file.h"
+#include "list-tasks.h"
 
 using namespace std;
+
 
 /*
 class ToDo {
@@ -23,22 +24,6 @@ public:
     string get_description();
 };
 */
-
-void list_tasks(string _filename) {
-    ifstream my_file;
-    my_file.open(_filename);
-    if (my_file.is_open()) {
-        string file_content;
-        unsigned int line_number = 1;
-        while (my_file >> file_content) {
-            cout << line_number << " - " << file_content << endl;
-            line_number++;
-        }
-    } else {
-        cerr << "Could not open the file";
-    }
-    my_file.close();
-}
 
 int main(int argc, char** argv) {
 
