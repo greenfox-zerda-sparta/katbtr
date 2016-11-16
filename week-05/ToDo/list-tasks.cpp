@@ -19,3 +19,16 @@ void list_tasks(string _filename) {
     }
     my_file.close();
 }
+
+void list_is_empty(string _filename) {
+    ifstream my_file;
+    my_file.open(_filename);
+    bool is_empty = true;
+    string line;
+    while(my_file >> line) {
+        is_empty = false;
+    }
+    if (is_empty == true) {
+        cout << "No todos for today! :)" << endl;
+    }
+}

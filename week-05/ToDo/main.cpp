@@ -30,6 +30,7 @@ int main(int argc, char** argv) {
     if (argc == 1) {
         print_usage();
     } else if (string(argv[1]) == "-l") {
+            list_is_empty("todolist.txt");
             list_tasks("todolist.txt");
         } else if (string(argv[1]) == "-a") {
             cout << "Most -a -val műxik \n";
