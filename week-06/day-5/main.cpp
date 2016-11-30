@@ -47,6 +47,7 @@ int main() {
     for (unsigned int i = 0; i < 4; i++) {
         if (random_number[i] == user_guess_int[i]) {
             bull_counter++;
+            random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
         }
     }
 
@@ -61,11 +62,11 @@ int main() {
             if (random_number[i] != user_guess_int[i]) {
                 if (random_number[i] == user_guess_int[j]) {
                     cow_counter++;
+                    random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
                 }
             }
         }
     }
-
     cout << "Cows: " << cow_counter << endl;
 }
     return 0;
