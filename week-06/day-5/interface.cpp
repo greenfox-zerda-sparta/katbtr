@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "interface.h"
-#include <string>
-
 
 using namespace std;
 
@@ -27,12 +25,16 @@ string get_user_guess() {
     return user_guess;
 }
 
+void print_bulls(int _bull_counter) {
+    cout << "Bulls: " << _bull_counter << endl;
+}
+
 bool is_game_won(int _bull_counter) {
     if (_bull_counter == 4) {
        cout << "Congratulations! You win!" << endl;
         return true;
     } else {
-        cout << "Bulls: " << _bull_counter << endl;
+        print_bulls(_bull_counter);
     }
     return false;
 }
@@ -49,12 +51,6 @@ bool is_game_over(int _series_counter) {
     return false;
 }
 
-vector<int> switch_user_guess_int(string _user_guess) {
-    vector<int> user_guess_int;
-    char a = ' ';
-    for (int i = 0; i < 4; i++) {
-        a = _user_guess[i];
-        user_guess_int.push_back(int(a) - 48);
-    }
-    return user_guess_int;
+void print_solution() {
+    cout << "The solution was: ";
 }
