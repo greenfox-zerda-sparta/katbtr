@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int main() {
 
     print_intro();
@@ -18,46 +17,52 @@ int main() {
     }
     print_vector(orig_random_number);
 
-    int serie_counter = 0;
-    while (serie_counter < 10) {
+    int series_counter = 0;
+    while (series_counter < 10) {
         for (unsigned int i = 0; i < 4; i++) {
             random_number[i] = orig_random_number[i]; // to set back random_number from 999 forms
         }
-        get_user_guess();
-        
+
+        string user_guess = get_user_guess();
+        vector<int> user_guess_int;
+        char a = ' ';
+        for (int i = 0; i < 4; i++) {
+            a = user_guess[i];
+            user_guess_int.push_back(int(a) - 48);
+        }
+
         int bull_counter = 0;
 
-            for (unsigned int i = 0; i < 4; i++) {
-                if (random_number[i] == switch_user_guess_int(get_user_guess)[i]) {
-                    bull_counter++;
-                    random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
-                }
+        for (unsigned int i = 0; i < 4; i++) {
+            if (random_number[i] == user_guess_int[i]) {
+                bull_counter++;
+                random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
             }
+        }
 
-            if (bull_counter == 4) {
-                cout << "Congratulations, you win!" << endl;
-                break;
-            } else {
-                cout << "Bulls: " << bull_counter << endl;
+        if (is_game_won(bull_counter) == true) {
+            break;
+        } else {
 
-                int cow_counter = 0;
-                for (unsigned int i = 0; i < 4; i++) {
-                    for (unsigned int j = 0; j < 4; j++) {
-                        if (random_number[i] != get_user_guess()[i]) {
-                            if (random_number[i] == get_user_guess()[j]) {
-                                cow_counter++;
-                                random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
-                            }
+            int cow_counter = 0;
+            for (unsigned int i = 0; i < 4; i++) {
+                for (unsigned int j = 0; j < 4; j++) {
+                    if (random_number[i] != user_guess_int[i]) {
+                        if (random_number[i] == user_guess_int[j]) {
+                            cow_counter++;
+                            random_number[i] = 999; // in case there are same numbers present, so those won't be calculated multiple times
                         }
                     }
                 }
-                cout << "Cows: " << cow_counter << endl;
             }
-        serie_counter++;
-        if (serie_counter == 10) {
-            cout << "Game is over! Unfortunately you couldn't guess the number in 10 rounds." << endl;
+            print_cows(cow_counter);
         }
     }
+    series_counter++;
+    if (is_game_over(series_counter) == true) {
+        return 0;
+    }
+
 
     return 0;
 }
