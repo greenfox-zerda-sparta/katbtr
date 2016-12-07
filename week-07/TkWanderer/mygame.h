@@ -1,19 +1,24 @@
+#ifndef MYGAME_H_
+#define MYGAME_H_
+
 #include "game-engine.h"
+#include "util.h"
+#include <vector>
+
+typedef std::vector<bool> row;
+typedef std::vector<row> board;
+
+const int COVERABLE = 54;
 
 class MyGame : public Game {
 public:
-	MyGame() {}
-	virtual void init(GameContext& context) {
-		context.load_file("floor.bmp");
-	}
-	virtual void render(GameContext& context) {
-		context.draw_sprite("floor.bmp", 0, 0);
-		context.draw_sprite("floor.bmp", 72, 0);
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				context.draw_sprite("floor.bmp", i * 72, j * 72);
-			}
-		}
-		context.render();
-	}
+	MyGame();
+	~MyGame();
+	void init(GameContext& context);
+	void render(GameContext& context);
+private:
+	board myBoard;
+	void drawLevel(int x, int y, int covered);
 };
+
+#endif /* MYGAME_H_ */
