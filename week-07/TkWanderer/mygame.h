@@ -3,6 +3,7 @@
 
 #include "game-engine.h"
 #include "util.h"
+#include "coord.h"
 #include <vector>
 
 typedef std::vector<bool> row;
@@ -18,7 +19,10 @@ public:
 	void render(GameContext& context);
 private:
 	board myBoard;
+	Coord hero_position;
+	std::string hero_direction(GameContext& context);
 	void drawLevel(int x, int y, int covered);
+	void move_hero(GameContext& context);
 };
 
 #endif /* MYGAME_H_ */
