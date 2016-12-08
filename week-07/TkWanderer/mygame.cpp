@@ -10,6 +10,8 @@ void MyGame::init(GameContext& context) {
 	context.load_file("hero-up1.bmp");
 	context.load_file("hero-left1.bmp");
 	context.load_file("hero-right1.bmp");
+	context.load_file("skeleton1.bmp");
+	context.load_file("boss1.bmp");
 }
 
 void MyGame::render(GameContext& context) {
@@ -20,14 +22,15 @@ void MyGame::render(GameContext& context) {
 			context.draw_sprite((myBoard[i][j] ? "floor.bmp" : "wall.bmp"), x, y);
 		}
 	}
+	context.draw_sprite(hero_direction, hero_position.get_x(), hero_position.get_y());
 	move_hero(context);
-	context.draw_sprite(hero_direction(context), hero_position.get_x(), hero_position.get_y());
 	context.render();
 }
 
 MyGame::MyGame() {
 	myBoard = board(10, row(10, 0));
 	drawLevel(0, 0, 0);
+	hero_direction = "hero-down1.bmp";
 }
 
 MyGame::~MyGame() {}
@@ -90,18 +93,6 @@ void MyGame::drawLevel(int x, int y, int covered) {
 	drawLevel(x, y, covered);
 	return; //for safety, shoud never reach this line anyways...
 }
-std::string MyGame::hero_direction(GameContext& context) {
-	if (context.was_key_pressed(ARROW_UP)) {
-		return "hero-up1.bmp";
-	}
-	if (context.was_key_pressed(ARROW_LEFT)) {
-		return "hero-left1.bmp";
-	}
-	if (context.was_key_pressed(ARROW_RIGHT)) {
-		return "hero-right1.bmp";
-	}
-	return "hero-down1.bmp";
-}
 
 void MyGame::move_hero(GameContext& context) {
 	int x = hero_position.get_x() / tile_width;
@@ -109,23 +100,25 @@ void MyGame::move_hero(GameContext& context) {
 	if (context.was_key_pressed(ARROW_DOWN)) {
 		if (y < board_rows - 1 && myBoard[x][y + 1]) {
 			hero_position.set_y(hero_position.get_y() + tile_height);
+			hero_direction = "hero-down1.bmp";
 		}
-//		hero_direction(context);
 	}
 	if (context.was_key_pressed(ARROW_UP)) {
 		if (y > 0 && myBoard[x][y - 1]) {
 			hero_position.set_y(hero_position.get_y() - tile_height);
+			hero_direction = "hero-up1.bmp";
 		}
-		context.draw_sprite("hero-up1.bmp", hero_position.get_x(), hero_position.get_y());
 	}
 	if (context.was_key_pressed(ARROW_LEFT)) {
 		if (x > 0 && myBoard[x - 1][y]) {
 			hero_position.set_x(hero_position.get_x() - tile_width);
+			hero_direction = "hero-left1.bmp";
 		}
 	}
 	if (context.was_key_pressed(ARROW_RIGHT)) {
 		if (x < board_cols - 1 && myBoard[x + 1][y]) {
 			hero_position.set_x(hero_position.get_x() + tile_width);
+			hero_direction = "hero-right1.bmp";
 		}
 	}
 }

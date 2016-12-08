@@ -20,7 +20,7 @@ public:
 private:
 	board myBoard;
 	Coord hero_position;
-	std::string hero_direction(GameContext& context);
+	std::string hero_direction;
 	void drawLevel(int x, int y, int covered);
 	void move_hero(GameContext& context);
 };
