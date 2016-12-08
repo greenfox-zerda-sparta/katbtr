@@ -1,5 +1,8 @@
 #include "mygame.h"
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 typedef unsigned int uint;
 
@@ -23,6 +26,14 @@ void MyGame::render(GameContext& context) {
 		}
 	}
 	context.draw_sprite(hero_direction, hero_position.get_x(), hero_position.get_y());
+	for (int i = 0; i < character_count; i++) {
+		if (i == 0) {
+			context.draw_sprite("boss1.bmp", character_position[i].get_x(), character_position[i].get_y());
+		}
+		else {
+			context.draw_sprite("skeleton1.bmp", character_position[i].get_x(), character_position[i].get_y());
+		}
+	}
 	move_hero(context);
 	context.render();
 }
@@ -31,6 +42,11 @@ MyGame::MyGame() {
 	myBoard = board(10, row(10, 0));
 	drawLevel(0, 0, 0);
 	hero_direction = "hero-down1.bmp";
+	character_count = 4;
+	character_position = vector<Coord>(character_count);
+	for (int i = 0; i < character_count; i++) {
+		character_position[i] = put_character();
+	}
 }
 
 MyGame::~MyGame() {}
@@ -121,4 +137,30 @@ void MyGame::move_hero(GameContext& context) {
 			hero_direction = "hero-right1.bmp";
 		}
 	}
+}
+
+Coord MyGame::put_character() {
+	Coord position;
+	do {
+		position.set_x((rand() % board_cols) * tile_width);
+		position.set_y((rand() % board_rows) * tile_height);
+	} while (!is_a_good_position(position));
+	return position;
+}
+
+bool MyGame::is_a_good_position(Coord position) {
+	int x = position.get_x() / tile_width;
+	int y = position.get_y() / tile_width;
+	if (!myBoard[x][y]) {
+		return false;
+	}
+	for (int i = 0; i < character_count; i++) {
+		if (character_position[i] == position) {
+			return false;
+		}
+	}
+	if (hero_position == position) {
+		return false;
+	}
+	return true;
 }

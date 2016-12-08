@@ -20,9 +20,15 @@ public:
 private:
 	board myBoard;
 	Coord hero_position;
+	Coord skeleton_position;
+	Coord boss_position;
 	std::string hero_direction;
 	void drawLevel(int x, int y, int covered);
 	void move_hero(GameContext& context);
+	Coord put_character();
+	bool is_a_good_position(Coord position);
+	int character_count;
+	std::vector<Coord> character_position;
 };
 
 #endif /* MYGAME_H_ */
