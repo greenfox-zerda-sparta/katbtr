@@ -1,24 +1,34 @@
-#include <cstdint>
-#include <iostream>
+#pragma once
 
-#ifndef COLOR_COLOR_H
-#define COLOR_COLOR_H
+#include <cstdint>
+#include <iomanip>
+#include <sstream>
 
 class Color {
 private:
-    uint8_t Red;
-    uint8_t Green;
-    uint8_t Blue;
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
 public:
-    Color();
-    Color(uint8_t _red, uint8_t _green, uint8_t _blue);
-    Color(std::string hex_color) throw();
-    Color(const Color& other);
-    bool is_hex(std::string hex_color);
-    uint8_t string_to_hex(std::string& color, unsigned int position);
-    void print_color() const;
-    Color blend(const Color& other);
-    void darken(float amount);
+	Color();
+	Color(unsigned char, unsigned char, unsigned char);
+	~Color();
+	virtual unsigned char* get_red();
+	virtual unsigned char* get_green();
+	virtual unsigned char* get_blue();
+	Color(std::string hex_color);
+	Color(const Color& other);
+	bool is_hex(std::string hex_color);
+	unsigned char string_to_hex(std::string& color, unsigned int position);
+	void print_color() const;
+	Color blend(const Color& other);
+	void darken(float amount);
+	void lighten(float amount);
+	bool is_greater_255(float number);
+	Color operator+(const Color& other);
+	Color& operator++();
+	Color operator++(int);
+	Color darken2(float amount);
+	Color& operator--();
+	Color operator--(int);
 };
-
-#endif //COLOR_COLOR_H
