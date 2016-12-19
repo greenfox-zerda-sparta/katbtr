@@ -13,6 +13,7 @@ public:
     std::string get_string();
     bool isAnAnagram(std::string stringToCheck);
     int countHowMany(char charToFind);
+    std::string to_lower(std::string str);
 };
 
 
