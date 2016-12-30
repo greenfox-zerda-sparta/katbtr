@@ -14,6 +14,8 @@ void Game::init(SDL_Engine& context) {
   context.load_file("pics/tile2.bmp");
   context.load_file("pics/cross2.bmp");
   context.load_file("pics/circle2.bmp");
+  context.load_sound_file("sounds/medium.wav");
+  context.load_sound_file("sounds/scratch.wav");
 }
 
 void Game::render(SDL_Engine& context) {
@@ -39,10 +41,12 @@ void Game::put_mark(SDL_Engine& context, int x, int y) {
   if (board->get_map()[y][x] == 0) {
     if (is_player1_turn == true) {
       board->set_tile(y, x, 1);
+      play_sound("sounds/scratch.wav");
       is_player1_turn = false;
       is_won();
     } else {
       board->set_tile(y, x, 2);
+      play_sound("sounds/medium.wav");
       is_player1_turn = true;
       is_won();
     }
@@ -147,6 +151,7 @@ bool Game::is_diagonal_5_dir1_done() {
   return win;
 }
 
+
 bool Game::is_diagonal_5_dir2_done() {
   int counter1;
   int counter2;
@@ -185,4 +190,9 @@ bool Game::is_won() {
     return true;
   }
   return false;
+}
+
+void Game::play_sound(std::string filename) {
+  Mix_Chunk* sound = Mix_LoadWAV(filename.c_str());
+  Mix_PlayChannel(-1, sound, 0);
 }

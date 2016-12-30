@@ -28,6 +28,7 @@ void Gomoku::run() {
         break;
       }
     case SDL_MOUSEBUTTONDOWN:
+ //     if (event.button.x < 684 && event.button.y < 684 && game->is_gameover() == 0) {
       while (game->is_won() == false) {
         game->put_mark(*context, event.button.x / 36, event.button.y / 36);
         break;

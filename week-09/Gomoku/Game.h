@@ -19,5 +19,6 @@ public:
   bool is_diagonal_5_dir1_done();
   bool is_diagonal_5_dir2_done();
   bool is_won();
+  void play_sound(std::string filename);
 };
 #endif
