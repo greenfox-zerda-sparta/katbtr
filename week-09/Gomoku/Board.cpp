@@ -1,7 +1,7 @@
 #include "Board.h"
 
 Board::Board() {
-  map = std::vector<std::vector<int>>(19, std::vector<int>(19, 0));;
+  map = std::vector<std::vector<int>>(19, std::vector<int>(19, 0));
 }
 
 Board::~Board() {

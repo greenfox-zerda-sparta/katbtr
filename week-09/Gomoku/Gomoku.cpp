@@ -28,8 +28,10 @@ void Gomoku::run() {
         break;
       }
     case SDL_MOUSEBUTTONDOWN:
+      while (game->is_won() == false) {
         game->put_mark(*context, event.button.x / 36, event.button.y / 36);
         break;
+      }
     }
     game->render(*context);
   }
