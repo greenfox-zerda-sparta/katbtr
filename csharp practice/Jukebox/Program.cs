@@ -10,6 +10,9 @@ namespace JukeboxCS
     {
         static void Main(string[] args)
         {
+            Jukebox jukebox = new Jukebox();
+
+            jukebox.ListSongs();
         }
     }
 }

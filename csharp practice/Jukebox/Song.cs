@@ -8,6 +8,7 @@ namespace JukeboxCS
 {
     public abstract class Song
     {
+        private static int songcount;
         protected string title;
         protected string artist;
         protected string genre;
@@ -17,13 +18,16 @@ namespace JukeboxCS
 
         public Song()
         {
-         
+            songcount++;
+            ratecount = 0;
+            ratesum = 0;
+            rateave = 0;
         }
 
         public abstract bool Rate(int myrate);
 
-        public string Title { get; }
-        public string Artist { get; }
+        public string Title { get { return title; }  }
+        public string Artist { get { return artist; } }
         public string Genre { get; }
         public float RateAve { get; set; }
         public float RateCount { get; }
