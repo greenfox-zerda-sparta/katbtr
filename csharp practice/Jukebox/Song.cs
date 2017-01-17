@@ -28,10 +28,12 @@ namespace JukeboxCS
 
         public string Title { get { return title; }  }
         public string Artist { get { return artist; } }
-        public string Genre { get; }
-        public float RateAve { get; set; }
-        public float RateCount { get; }
-        public float RateSum { get; }
+        public string Genre { get { return genre; } }
+        public float RateAve() {
+            return ratesum / ratecount;
+        }
+        public float RateCount { get { return ratecount; } }
+        public float RateSum { get { return ratesum; } }
 
         }
 }
