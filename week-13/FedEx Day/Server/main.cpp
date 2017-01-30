@@ -2,6 +2,7 @@
 #include "chatterboxserver.h"
 
 int main(int argc, char **argv) {
+  
   QCoreApplication app(argc, argv);
 
   ChatServer server;

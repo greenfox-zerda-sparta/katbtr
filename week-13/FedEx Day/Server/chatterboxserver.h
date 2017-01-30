@@ -12,7 +12,7 @@ class ChatServer : public QTcpServer {
   Q_OBJECT
 
 public:
-  ChatServer(QObject *parent = Q_NULLPTR);
+  ChatServer(QObject* parent = Q_NULLPTR);
   ~ChatServer();
   void StartServer();
 

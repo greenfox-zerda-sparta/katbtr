@@ -4,6 +4,8 @@
 #include "MyTime.h"
 #include <time.h>
 
+#define _CRT_SECURE_NO_WARNINGS
+
 MyTime::MyTime() {}
 
 //std::string Time::GetCurrentTime() {

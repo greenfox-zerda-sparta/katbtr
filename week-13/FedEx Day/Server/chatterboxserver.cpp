@@ -1,7 +1,7 @@
 #include <QTcpSocket>
 #include "chatterboxserver.h"
 
-ChatServer::ChatServer(QObject *parent) : QTcpServer(parent) {
+ChatServer::ChatServer(QObject* parent) : QTcpServer(parent) {
   ID = 1;
   mylogfile = new Logfile;
 }
@@ -30,7 +30,7 @@ void ChatServer::incomingConnection(qintptr SocketDescriptor) {
   QString user = QString::number(ID);
   ID++;
   users[client] = user;
-  foreach(QTcpSocket *client, clients) {
+  foreach(QTcpSocket* client, clients) {
     client->write(QString("Server: Client " + user + " has joined.\n").toUtf8());
   }
 
@@ -41,7 +41,7 @@ void ChatServer::incomingConnection(qintptr SocketDescriptor) {
 }
 
 void ChatServer::readyRead() {
-  QTcpSocket *client = (QTcpSocket*)sender();
+  QTcpSocket* client = (QTcpSocket*)sender();
   if (client->canReadLine()) {
     QString line = (client->readAll()).trimmed();
 
@@ -51,7 +51,7 @@ void ChatServer::readyRead() {
       qDebug() << message;
       mylogfile->log_buffer(LocalTimer->GetTimeFileFormat() + " " + message.toStdString());
 
-      foreach(QTcpSocket *otherClient, clients) {
+      foreach(QTcpSocket* otherClient, clients) {
         if (otherClient != client) {
           otherClient->write((message + '\n').toUtf8());
         }
@@ -61,7 +61,7 @@ void ChatServer::readyRead() {
 }
 
 void ChatServer::disconnected() {
-  QTcpSocket *client = (QTcpSocket*)sender();
+  QTcpSocket* client = (QTcpSocket*)sender();
   QString user = users[client];
   QString DisconnectMsg = "Client " + user + " disconnected. ";
   qDebug() << DisconnectMsg;
@@ -70,7 +70,7 @@ void ChatServer::disconnected() {
   clients.remove(client);
   users.remove(client);
 
-  foreach(QTcpSocket *client, clients) {
+  foreach(QTcpSocket* client, clients) {
     client->write((DisconnectMsg + '\n').toUtf8());
   }
   PrintUserList();
